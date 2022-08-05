@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"TodoList/model"
+	"MyTodoList/model"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"gopkg.in/ini.v1"
 
