@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"time"
@@ -11,12 +10,12 @@ import (
 var DB *gorm.DB
 
 func Database(connstring string) {
-	println(connstring)
+	
 	db, err := gorm.Open("mysql", connstring)
 	if err != nil {
 		panic("MySQL数据库连接错误")
 	}
-	fmt.Println("数据库连接成功！")
+	
 	db.LogMode(true)
 	if gin.Mode() == "release" {
 		db.LogMode(false)
