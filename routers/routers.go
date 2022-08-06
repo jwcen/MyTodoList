@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"MyTodoList/api"
+	"MyTodoList/middleware"
 )
 
 func NewRouter() *gin.Engine {
@@ -19,6 +20,13 @@ func NewRouter() *gin.Engine {
 		// 用户操作
 		v1.POST("user/register", api.UserRegister)
 		v1.POST("user/login", api.UserLogin)
+
+		// 身份验证，jwt鉴权
+		authed := v1.Group("/")
+		authed.Use(middleware.JWT())
+		{
+			authed.POST("task", api.CreateTask)
+		}
 	}
 
 	return r
